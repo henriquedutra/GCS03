@@ -1,0 +1,21 @@
+# Laboratorio 3
+# Versao 3; DB(imagem postgres) e Web(boot.sh, portas)
+
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./:/app
+    command: ./boot.sh
+    links:
+      - db
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
